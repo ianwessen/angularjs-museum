@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="App">
+<head>
+    <meta charset="UTF-8">
+    <title>Micro Angular</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="main-title">World’s Smallest Angular App</h1>
+        <p class="main-subtitle">This is a simple Angular app</p>
+
+        <hr>
+
+        <div class="col-sm-4">
+            <ul id="nav-sidebar" class="nav nav-sidebar">
+                <li class="nav-item">
+                    <a href="#simple-binding">Simple binding</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#dependency-injection">Dependency injection</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#simple-adding-machine">Simple adding machine</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#scope-inheritance">Scope inheritance</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#interpolation">Interpolation</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="col-sm-8">
+
+            <section id="simple-binding" class="body-section" ng-controller="MyController">
+                <h3>Simple binding</h3>
+                <p>This component uses an implicit controller. Simply by using <code>ng-model</code> on the input element, Angular watches for changes in the value of the field and updates the view accordingly.</p>
+                <input class="form-control" type="text" ng-model="name" placeholder="Type your name">
+                <p><pre>Hello {{name}}</pre></p>
+            </section>
+
+            <section id="dependency-injection" class="body-section" ng-controller="ClockController">
+                <h3>Dependency Injection</h3>
+                <p>We can also inject the <code>$timeout</code> service, one of Angulars built-in modules to make handy time-based components.</p>
+                <pre>{{clock.now}}</pre>
+            </section>
+
+            <section id="simple-adding-machine" class="body-section" ng-controller="ClickController">
+                <h3>Simple adding machine</h3>
+                <div class="btn-group">
+                    <button class="btn btn-success" ng-click="add(1)">Add</button>
+                    <button class="btn btn-danger" ng-click="subtract(1)">Subtract</button>
+                </div>
+                <p><pre>Current count: {{count}}</pre></p>
+            </section>
+
+            <section id="scope-inheritance" class="body-section" ng-controller="ParentController">
+                <h3>Scope inheritance</h3>
+                <p>In the parent scope we define <code>$scope.person = { greeted: true }</code>.</p>
+                <div ng-controller="ChildController">
+                    <p>But here in the child scope, we have a function <code>sayHello()</code>which modifies <code>$scope.person</code> with a name property</p>
+                    <button class="btn btn-info" ng-click="sayHello()">Say hello</button>
+                    <p><pre>{{person}}</pre></p>
+                    <p>In other words, we have a child scope updating a parent scope.</p>
+                </div>
+            </section>
+
+            <section id="interpolation" class="body-section" ng-controller="EmailController">
+                <h3>Interpolation</h3>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <p>Here you can inject data in to bodies of other data using Angular interpolation via <code>$interpolate</code>. Type a valid email, then add a moustached <code>to</code> to the body of your email and see the recipient show up!</p>
+                    </div>
+                    <div class="col-sm-6">
+                        <input class="form-control"
+                                ng-model="to"
+                                type="email"
+                                placeholder="Recipient email" /> 
+                        <textarea class="form-control" ng-model="emailBody" placeholder="Your message"></textarea> 
+                    </div>
+                </div>
+                <p><pre>{{ previewText }}</pre></p>
+            </section>
+        </div>
+
+     </div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.5/angular.min.js"></script>
+<script src="app.js"></script>
+</html>
