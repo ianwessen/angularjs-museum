@@ -58,7 +58,7 @@ var app = angular
 
     .controller('ChildController', function($scope) {
         $scope.sayHello = function() {
-            $scope.person.name = 'Ben Gurion';
+            $scope.person.name = 'James Maxwell';
         };
     })
 
